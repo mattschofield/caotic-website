@@ -1,0 +1,30 @@
+!!! 5
+html
+  head
+    title= title
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(href='/maps/documentation/javascript/examples/default.css', rel='stylesheet')
+    script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en')
+    script
+      function initialize() {
+        var mapOptions = {
+          scaleControl: true,
+          center: new google.maps.LatLng(53.4649,-2.234884),
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+        mapOptions);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: map.getCenter()
+        });
+        var infowindow = new google.maps.InfoWindow();
+        infowindow.setContent('<b>Schunck Bldg Burlington Rooms</b><br/><p>Burlington St, Manchester M13</p>');
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+  body!= body
